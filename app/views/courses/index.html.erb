@@ -15,6 +15,7 @@
   <tbody>
     <% @courses.each do |course| %>
       <tr>
+        <td><%= image_tag course.thumbnail if course.thumbnail.present? %></td>
         <td><%= course.title %></td>
         <td><%= course.donation_goal %></td>
         <td><%= course.user_id %></td>
