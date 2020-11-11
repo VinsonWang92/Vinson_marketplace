@@ -5,8 +5,8 @@ Rails.application.routes.draw do
       mount Sidekiq::Web => '/sidekiq'
     end
 
-    resources :projects do
-      resources :comments, module: :projects
+    resources :courses do
+      resources :comments, module: :courses
     end
 
   devise_for :users

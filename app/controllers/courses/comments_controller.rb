@@ -1,4 +1,4 @@
-class Courses::CommentsController < ApplicationController
+class Courses::CommentsController < CommentsController
     before_action :set_commentable
 
     private
