@@ -9,7 +9,8 @@ Rails.application.routes.draw do
       resources :comments, module: :courses
     end
 
-  devise_for :users
+
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
   root to: 'courses#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
