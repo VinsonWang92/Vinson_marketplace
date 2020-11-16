@@ -34,7 +34,7 @@ R11. Description of your marketplace app (website), including:
 - Target audience
     - Students of all ages are the target audience as they voice what sort of courses they are looking for and they can also advise how much they're willing to pay on idea boards and people with technical knowledge that can create a course but are unsure of whether their course will have an audience or they don't have the financial means or incentives to start/complete the course
 - Tech stack (e.g. html, css, deployment platform, etc)
-    - HTML, CSS, Heroku, Ruby on Rails
+    - HTML, CSS, Heroku, Ruby on Rails, Tailwind, Stripe
 
 R12. User stories for your App
 
@@ -51,14 +51,38 @@ R12. User stories for your App
 - As a seller I want to be able to edit/remove courses that I have listed so that I can make changes as necessary to suit my backers
 - As a buyer I want to be able to track which courses I have donated to so that I don't donate to the same course creator twice or keep track of any updates the creator has made
 - As a user I want a clear set of rules to be able to follow how to use the site so I can follow the etiquette and protocol expected by administrators/buyers/sellers
+- As a user I want to be able to use the application on all my devices of different screen sizes
 
 R13. Wireframes for your App
+![Wireframes]()
 
 R14. ERD for your App
 
 R15. Explain the different high level components (abstractions) in your app
+The application will contain the following high level components:
+- log in forms that will be used to authenticate, verify and identify the users
+- comment boxes to allow for commenting on any existing courses and to allow for communication between buyers and sellers
+- Stripe payment system that allows for buyers to donate to and back potential courses and allows for sellers to connect their accounts and receive funds from buyers
+- Image uploading system that allows for thumbnails on courses and to provide an avenue for visual representation of your potential course
+- Ability to cancel your account and remove all your data from the course to give confidence to users to try out the application
+- Form to advertise your proposed course with a description section that allows you to format your text to provide a cleaner and easier to understand interface for potential backers
+- Postgresql database to store all your saved courses and your user data, allowing for quick retrieval of data and security of storage
 
 R16. Detail any third party services your app will use 
+
+My app will be using the following third party services:
+- Github for version control and storing source code
+    -   Github is a widely used version control software and popular repository for source code. Using this service I will be able to securely store my application's code and track the progress of the creation of the application and be able to update the app when required
+- Heroku for deployment of application
+    - I am able to utilise the free playform to host my domain and deploy my application using git technology. 
+- Stripe for payment system
+    - Using the stripe allows for sellers to set up their profile and receive payments with ease and with the API provided, integration of stripe with your account is seamless. Buyers will also be able to donate/purchase via stripe as it will be set up as a one time checkout that will securely take your information and process the payment accordingly.
+- Omniauth
+    - We will be using the omniauth gem to allow our sellers to connect their accounts to Stripe to receive payments
+- Devise
+    - this Ruby gem will be used to set up the authentication of users and to protect user data for the application
+- Postgresql
+ - this will be the free database management software used for securely storing and retrieving user data
 
 R17. Describe your projects models in terms of the relationships (active record associations) they have with each other
 
