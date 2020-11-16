@@ -9,7 +9,7 @@
       </div>
 
       <% unless author_of(@course) %>
-        <%= link_to "Back this idea", "#", class: "btn btn-default btn-lg lg:w-auto w-full lg:text-left text-center" %>
+        <button id="checkout-button" data-stripe="payment" class="btn btn-default btn-lg lg:w-auto w-full lg:text-left text-center">Back this Course</button>
       <% end %>
     </div>
 
@@ -45,7 +45,6 @@
     <div class="w-full mt-6 lg:pl-10 lg:w-2/5 lg:mt-0">
       <p class="text-sm font-semibold text-gray-500 uppercase">Description</p>
       <%= @course.description %>
-      <button id="checkout-button" data-stripe="payment">Back this Course</button>
       <script src="https://js.stripe.com/v3/"></script>
       <script>
           document.querySelector("[data-stripe='payment']").addEventListener("click", () => {
