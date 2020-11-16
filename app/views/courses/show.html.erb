@@ -1,3 +1,4 @@
+
 <div class="container relative p-6 mx-auto text-gray-900 bg-white rounded-lg lg:p-10">
   <div class="flex flex-wrap items-center justify-between w-full pb-4 mb-8 border-b-2 border-gray-200">
     <div class="flex flex-wrap items-start justify-between w-full pb-4 mb-4 border-b-2 border-gray-200">
@@ -44,7 +45,18 @@
     <div class="w-full mt-6 lg:pl-10 lg:w-2/5 lg:mt-0">
       <p class="text-sm font-semibold text-gray-500 uppercase">Description</p>
       <%= @course.description %>
-    </div>
+      <button id="checkout-button" data-stripe="payment">Back this Course</button>
+      <script src="https://js.stripe.com/v3/"></script>
+      <script>
+          document.querySelector("[data-stripe='payment']").addEventListener("click", () => {
+          const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+            stripe.redirectToCheckout({
+            sessionId: "<%= @session_id %>"
+              });
+          });
+      </script>
+      
+
   </div>
 
   <div class="w-full lg:w-3/5">

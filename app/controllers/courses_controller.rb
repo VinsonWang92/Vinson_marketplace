@@ -11,6 +11,24 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
+    session = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      customer_email: "jairo.bilbao@gmail.com",
+      line_items: [{
+          name: @course.title,
+          amount: 500,
+          currency: 'aud',
+          quantity: 1,
+      }],
+      payment_intent_data: {
+          metadata: {
+              course_id: @course.id
+          }
+      },
+      success_url: "#{root_url}payments/success?courseId=#{@course.id}",
+      cancel_url: "#{root_url}courses"
+  )
+  @session_id = session.id
   end
 
   # GET /courses/new

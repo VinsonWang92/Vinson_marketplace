@@ -38,6 +38,20 @@ R11. Description of your marketplace app (website), including:
 
 R12. User stories for your App
 
+- As a buyer I want to be able to easily see what the seller is offering so I can decide if I want to donate
+- As a buyer I want to be able to create an account and easily donate to a seller
+- As a seller I want to be able to add images to my course listing so I can attract more buyers
+- As a seller I want to be able to add descriptions to my course listing so I can inform my backers what they can expect
+- As a seller I want to be able to add a donation goal to my course listing so that backers are aware roughly the amount I'd require to complete the course
+- As a seller I want to be able to track how much has been donated to my course so that I know how far I am from being able to start the course
+- As a seller I want to be able to accept payments from buyers so that I have a way to access and use funds donated to me 
+- As a buyer I want to be able to comment on courses and communicate with the seller so that I can request for particular content or enquire further
+- As a seller I want to be able to comment and reply to buyers to further understand their needs and requirements
+- As a seller I want to be able to have my own account to keep track of all the potential courses I have listed 
+- As a seller I want to be able to edit/remove courses that I have listed so that I can make changes as necessary to suit my backers
+- As a buyer I want to be able to track which courses I have donated to so that I don't donate to the same course creator twice or keep track of any updates the creator has made
+- As a user I want a clear set of rules to be able to follow how to use the site so I can follow the etiquette and protocol expected by administrators/buyers/sellers
+
 R13. Wireframes for your App
 
 R14. ERD for your App
