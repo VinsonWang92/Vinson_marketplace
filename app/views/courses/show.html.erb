@@ -14,7 +14,7 @@
     </div>
 
     <div class="w-full mb-4 lg:w-1/5 lg:mb-0">
-      <p class="m-0 text-xl font-semibold leading-none"><% @course.pledged_amount %>0</p>
+      <p class="m-0 text-xl font-semibold leading-none"><%#@course.pledged_amount %>0</p>
       <p class="text-sm text-gray-500">pledged of <%= number_to_currency(@course.donation_goal) %></p>
     </div>
 
