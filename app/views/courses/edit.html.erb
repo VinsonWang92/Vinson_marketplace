@@ -1,4 +1,7 @@
 <div class="max-w-lg m-auto">
   <h1 class="text-3xl font-bold mb-6">Edit Course</h1>
   <%= render 'form', course: @course %>
+  <div class="mb-6">
+    <%= link_to "Delete Course", @course, :confirm => "Are you sure?", :method => :delete, class:"btn btn-default block"%>
+  </div>
 </div>
