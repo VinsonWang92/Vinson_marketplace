@@ -13,7 +13,7 @@ class CoursesController < ApplicationController
   def show
     session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
-      customer_email: "jairo.bilbao@gmail.com",
+      customer_email: "#{@user.email}",
       line_items: [{
           name: @course.title,
           amount: 500,
