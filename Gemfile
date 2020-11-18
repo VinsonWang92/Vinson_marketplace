@@ -63,3 +63,4 @@ gem 'stripe'
 gem 'omniauth', '~> 1.9'
 gem 'omniauth-stripe-connect'
 gem 'actiontext', '~> 6.0.3.4'
+gem "aws-sdk-s3", "~> 1.84"
