@@ -1,7 +1,7 @@
 <div class="flex flex-wrap items-start justify-start">
   <% @courses.each do |course| %>
     <div class="relative w-full p-6 border-2 border-blue-700 rounded-lg lg:w-1/4 lg:mr-8">
-      <%= image_tag course.thumbnail, class: "rounded" if course.thumbnail.present? %>
+      <%= image_tag course.thumbnail, :size => "300x300", class: "rounded" if course.thumbnail.present? %>
       <h3 class="mb-2 text-2xl font-bold"><%= course.title %></h3>
       <div class="my-1"><%= truncate(strip_tags(course.description.to_s), length: 140) %></div>
       <p>Donation goal: <%= course.donation_goal %></p>
