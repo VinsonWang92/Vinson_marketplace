@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     # authenticate :user, lambda { |u| u.admin? } do
     #   mount Sidekiq::Web => '/sidekiq'
     # end
-    get '/search' => 'courses#index'
+    get '/howto', to: "courses#howto"
     get "/payments/success", to: "payments#success"
     resources :courses do
       resources :comments, module: :courses
