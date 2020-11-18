@@ -4,11 +4,13 @@ Rails.application.routes.draw do
     # authenticate :user, lambda { |u| u.admin? } do
     #   mount Sidekiq::Web => '/sidekiq'
     # end
+    get '/search' => 'courses#index'
     get "/payments/success", to: "payments#success"
     resources :courses do
       resources :comments, module: :courses
     end
 
+   
   # scope '/checkout' do
   #   post 'create', to: 'checkout#create', as: 'checkout_create'
   #   get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'

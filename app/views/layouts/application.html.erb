@@ -41,6 +41,12 @@
           <div class="lg:flex-grow">
             <%= link_to "New course", new_course_path, class: "btn btn-white mb-2 lg:mb-0" %>
           </div>
+          <form>
+              <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none" name="q" type="text" placeholder="Search By Name" aria-label="Search"> 
+          </form>
+          <form>
+              <button class="btn btn-default mb-2 lg:mr-2 lg:mb-0 block" type="submit">Search</button>
+          </form>
           <div class="items-center block w-full mt-2 text-center lg:flex lg:flex-row lg:flex-1 lg:mt-0 lg:text-left lg:justify-end">
             <% if user_signed_in? %>
               <%= link_to "Account", edit_user_registration_path, class: "btn btn-default mb-2 lg:mr-2 lg:mb-0 block" %>
