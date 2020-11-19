@@ -16,8 +16,10 @@ It's a problem that needs solving as there seems to be a disconnect between cour
 
 R9. LINK TO DEPLOYED WEBSITE
 
+https://coursestarter.herokuapp.com/
+
 R10. A link to your GitHub repository (repo).
-- Ensure the repo is accessible by your Educators
+- https://github.com/VinsonWang92/Vinson_marketplace
 
 R11. Description of your marketplace app (website), including:
 - Purpose
@@ -30,7 +32,8 @@ R11. Description of your marketplace app (website), including:
     - Payment system to allow the backing of funds 
     - Individualised accounts for sellers and buyers
 - Sitemap
-- Screenshots
+Please refer to sitemap document in "docs"
+- Screenshots - please navigate site
 - Target audience
     - Students of all ages are the target audience as they voice what sort of courses they are looking for and they can also advise how much they're willing to pay on idea boards and people with technical knowledge that can create a course but are unsure of whether their course will have an audience or they don't have the financial means or incentives to start/complete the course
 - Tech stack (e.g. html, css, deployment platform, etc)
@@ -54,9 +57,11 @@ R12. User stories for your App
 - As a user I want to be able to use the application on all my devices of different screen sizes
 
 R13. Wireframes for your App
-![Wireframes]()
+Please refer to wireframes PDF in docs
 
 R14. ERD for your App
+
+Please refer to ERD picture in docs
 
 R15. Explain the different high level components (abstractions) in your app
 The application will contain the following high level components:
@@ -86,9 +91,106 @@ My app will be using the following third party services:
 
 R17. Describe your projects models in terms of the relationships (active record associations) they have with each other
 
+I have 3 project models in users, courses and comments.
+
+Users can have many courses and many comments but they don't HAVE to have any courses or comments
+
+Courses belong to 1 user and can have many comments from many users. Courses must belong to a user but does not have to have comments. Courses can also have thumbnails, descriptions and donation goals that all belong to the course
+
+Comments belong to users and courses. Each course and user can have many comments but they don't have to have any comments. Each comment must belong to a user or course.
+
 R18. Discuss the database relations to be implemented in your application
 
+Courses belong to users and users has a 1 to many relatioship with courses
+
+Comments belong to courses and users and has a many to many relationship with both (polymorphic)
+
 R19. Provide your database schema design
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "commentable_type"
+    t.integer "commentable_id"
+    t.bigint "user_id", null: false
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "title"
+    t.decimal "donation_goal", default: "0.0"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_courses_on_user_id"
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "first_name"
+    t.string "last_name"
+    t.boolean "admin", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "uid"
+    t.string "provider"
+    t.string "access_code"
+    t.string "publishable_key"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "users"
+  add_foreign_key "courses", "users"
+end
 
 R20. Describe the way tasks are allocated and tracked in your project
 Tasks have been allocated and broken down in a Trello board as cards where I can track what tasks are still to be completed for the project, which tasks are currently ongoing and which tasks have been completed. Tasks will be added as they are discovered during the course of the project as well. For version control and tracking Github will be used. 
@@ -96,26 +198,3 @@ Tasks have been allocated and broken down in a Trello board as cards where I can
 To further break this down, tasks have been created based on the user stories that have been created based on the agile methodology such that we have tasks that are specifically designed to create a working product as soon as possible. Styling tasks are created based on the wireframes that have been created to narrow down the scope and depth in which we will need to style our app and what potential tools we will ultimately utilise such as Bootstrap, Tailwind or just manual CSS. Our coding tasks will be created based on the ERD and user stories as we plan the relationships between or models to allow us to understand and track whether we have completed the task with sufficient functionality. 
 
 All of this can be tracked via trello by creating cards with descriptions and adding more cards as new tasks appear as our scope will almost inevitably increase. 
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
